@@ -62,10 +62,125 @@ const items = [
 
 const Appsidebar = () =>{
     return (<Sidebar>
+        <div className="flex h-full min-h-0 flex-col overflow-y-auto overscroll-contain">
         <SidebarHeader>
             
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarContent style={{ flex: "none", overflow: "visible" }}>
+            <SidebarGroup>
+                <SidebarGroupLabel>Tableau de bord</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                    {items.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+
+                    ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+        </SidebarContent>
+        <SidebarContent style={{ flex: "none", overflow: "visible" }}>
+            <SidebarGroup>
+                <SidebarGroupLabel>Tableau de bord</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                    {items.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+
+                    ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+        </SidebarContent>
+        <SidebarContent style={{ flex: "none", overflow: "visible" }}>
+            <SidebarGroup>
+                <SidebarGroupLabel>Tableau de bord</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                    {items.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+
+                    ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+        </SidebarContent>
+        <SidebarContent style={{ flex: "none", overflow: "visible" }}>
+            <SidebarGroup>
+                <SidebarGroupLabel>Tableau de bord</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                    {items.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+
+                    ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+        </SidebarContent>
+        <SidebarContent style={{ flex: "none", overflow: "visible" }}>
+            <SidebarGroup>
+                <SidebarGroupLabel>Tableau de bord</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                    {items.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+
+                    ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+        </SidebarContent>
+        <SidebarContent style={{ flex: "none", overflow: "visible" }}>
+            <SidebarGroup>
+                <SidebarGroupLabel>Tableau de bord</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                    {items.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+
+                    ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+        </SidebarContent>
+        <SidebarContent style={{ flex: "none", overflow: "visible" }}>
             <SidebarGroup>
                 <SidebarGroupLabel>Tableau de bord</SidebarGroupLabel>
                 <SidebarGroupContent>
@@ -88,6 +203,7 @@ const Appsidebar = () =>{
         <SidebarFooter>
             
         </SidebarFooter>
+        </div>
 
     </Sidebar>
     )
