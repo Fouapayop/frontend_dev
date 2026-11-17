@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Frontend-only login screen
+
+The login screen currently provides client-side form validation only. It does not authenticate
+users or protect the dashboard; connect it to a real authentication service before using it
+for access control.
+
 ## Getting Started
 
 First, run the development server:

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Appsidebar from "@/components/Appsidebar";
-import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,24 +26,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex">
+      <body className="min-h-full">
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
         >
-          <SidebarProvider>
-        <Appsidebar />
-        <main className="w-full">
-          <Navbar />
-          <div className="px-4">
-            {children}
-          </div>
-        </main>
-        </SidebarProvider>
+          <Toaster position="bottom-right" />
+          {children}
         </ThemeProvider>
-        </body>
+      </body>
     </html>
   );
 }

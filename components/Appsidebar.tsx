@@ -162,7 +162,7 @@ const Appsidebar = () =>{
                         <DropdownMenuContent align="end" className="min-w-48 rounded-xl">
                             <DropdownMenuItem>Compte</DropdownMenuItem>
                             <DropdownMenuItem>Parametres</DropdownMenuItem>
-                            <DropdownMenuItem>Deconnexion</DropdownMenuItem>
+                            <DropdownMenuItem>Déconnexion</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </SidebarMenuItem>
