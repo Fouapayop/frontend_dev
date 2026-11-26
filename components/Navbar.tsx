@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui//avatar";
 import {
@@ -14,19 +15,45 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
-import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const Navbar = () =>{
     const {setTheme} = useTheme();
-    const {toggleSidebar} = useSidebar();
+    const pathname = usePathname();
+    const dashboardHref = pathname === "/utilisateurDashb"
+        ? "/utilisateurDashb"
+        : pathname === "/acceuil" ? "/acceuil" : "/dashboard";
+    const pageTitle: Record<string, string> = {
+        "/acceuil": "Accueil",
+        "/dashboard": "Tableau de bord",
+        "/utilisateurDashb": "Espace consultation",
+        "/creerAssem": "Créer une assemblée",
+        "/voirAssemblees": "Assemblées",
+        "/VoirMembres": "Membres",
+        "/creerMembre": "Ajouter un membre",
+        "/ConsulterFinance": "Suivi des finances",
+        "/EnregistrerFinances": "Enregistrer un versement",
+    };
     return(
-        <nav className="p-4 flex items-center justify-between">
-            {/*GAUCHE */}
-            <SidebarTrigger />
-            {/*<Button variant="outline" onClick={toggleSidebar}>Ouvrir/Fermer</Button>*/}
-            {/*RIGTH */}
-            <div className="flex items-center gap-4">
-                <Link href="/">Dashboard</Link>
+        <nav className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background/85 px-4 backdrop-blur-xl sm:px-6">
+            <div className="flex items-center gap-3">
+                <SidebarTrigger />
+                <span className="hidden items-center gap-1 text-sm font-medium text-muted-foreground sm:inline-flex">
+                    Gestion Finance <span className="px-1 text-border">/</span>
+                    <Link href={dashboardHref} className="transition-colors hover:text-primary">
+                        {pathname === "/utilisateurDashb"
+                            ? "Espace consultation"
+                            : pathname === "/dashboard" ? "Tableau de bord" : "Accueil"}
+                    </Link>
+                    {pathname !== dashboardHref && (
+                        <>
+                            <span className="px-1 text-border">/</span>
+                            <span className="text-foreground">{pageTitle[pathname] ?? "Tableau de bord"}</span>
+                        </>
+                    )}
+                </span>
+            </div>
+            <div className="flex items-center gap-2 sm:gap-3">
                 {/*theme menu */}
         
     <DropdownMenu>

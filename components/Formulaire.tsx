@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import { toast } from "sonner"
-import * as z from "zod"
 
+import { loginSchema, type LoginFormValues } from "@/lib/schemas"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -23,15 +23,10 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 
-const formSchema = z.object({
-  username: z.string().trim().min(1, "Saisis ton nom d'utilisateur."),
-  password: z.string().min(1, "Saisis ton mot de passe."),
-})
-
 export function LoginForm() {
   const router = useRouter()
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       username: "",
       password: "",
@@ -48,7 +43,7 @@ export function LoginForm() {
       <CardHeader>
         <CardTitle className="text-xl">Connexion</CardTitle>
         <CardDescription>
-          Saisis ton nom d'utilisateur et ton mot de passe pour continuer.
+          Saisis ton nom d&apos;utilisateur et ton mot de passe pour continuer.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -59,12 +54,12 @@ export function LoginForm() {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="login-username">Nom d'utilisateur</FieldLabel>
+                  <FieldLabel htmlFor="login-username">Nom d&apos;utilisateur</FieldLabel>
                   <Input
                     {...field}
                     id="login-username"
                     autoComplete="username"
-                    placeholder="Nom d'utilisateur"
+                    placeholder="Nom d&apos;utilisateur"
                     aria-invalid={fieldState.invalid}
                   />
                   {fieldState.invalid && <FieldError errors={[fieldState.error]} />}

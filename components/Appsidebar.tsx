@@ -7,7 +7,6 @@ import {
     SidebarContent,
     SidebarFooter,
     SidebarGroup,
-    SidebarGroupAction,
     SidebarGroupContent,
     SidebarGroupLabel,
     SidebarHeader,
@@ -23,49 +22,56 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collap
 const items = [
     {
         title: "Acceuil",
-        href: "/",
+        href: "/acceuil",
         icon: Home,
 
     },
     {
-        title: "Creer membre",
-        href: "#",
+        title: "Créer Assemblée",
+        href: "/creerAssem",
         icon: Inbox,
 
     },
     {
-        title: "Voir les membres",
-        href: "",
+        title: "Voir Assemblées",
+        href: "/voirAssemblees",
+        icon: Home,
+
+    },
+   
+    
+]
+const items2 = [
+    {
+        title: "Voir  Membres",
+        href: "/VoirMembres",
         icon: Home,
 
     },
     {
-        title: "Voir Membres Assemblée",
-        href: "#",
+        title: "Créer un Membre",
+        href: "/creerMembre",
         icon: Home,
+    },
+    
+]
+const items3 = [
+    {
+        title: "Consulter les D&O",
+        href: "/ConsulterFinance",
+        icon: Inbox,
 
     },
     {
-        title: "Creer Assemblée",
-        href: "#",
+        title: "Voir Assemblée(s) avec impayés",
+        href: "/",
         icon: Home,
 
     },
-    {
-        title: "Mettre a jour Assemblée",
-        href: "#",
-        icon: Home,
-
-    },
-    {
-        title: "Creer un compte",
-        href: "#",
-        icon: Home,
-
-    }
+    
 ]
 
-const Appsidebar = () =>{
+const Appsidebar = ({ readOnly = false }: { readOnly?: boolean }) =>{
     return (<Sidebar collapsible="icon">
         <div className="flex h-full min-h-0 flex-col">
         <SidebarHeader className="shrink-0 px-3 py-4">
@@ -75,7 +81,7 @@ const Appsidebar = () =>{
                         <Image className="size-9 shrink-0 rounded-xl object-cover" src="https://avatars.githubusercontent.com/u/1486366?v=4" width={36} height={36} alt="Avatar de Yomie fouapa" />
                         <span className="flex min-w-0 flex-col items-start gap-0.5">
                             <span className="max-w-full truncate text-sm font-semibold">Yomie fouapa</span>
-                            <span className="text-xs text-sidebar-foreground/60">Gestionnaire</span>
+                            <span className="text-xs text-sidebar-foreground/60">{readOnly ? "Consultation" : "Administration"}</span>
                         </span>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -83,8 +89,24 @@ const Appsidebar = () =>{
         </SidebarHeader>
         <SidebarSeparator className="mx-0 w-full shrink-0" />
         <SidebarContent className="min-h-0 flex-1 gap-1 overflow-y-auto overscroll-contain px-1 py-2">
+            {readOnly ? (
+                <SidebarGroup className="py-1">
+                    <SidebarGroupLabel className="px-3 text-[11px] font-semibold uppercase tracking-wider text-sidebar-foreground/50">Consultation</SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu className="gap-1 px-1">
+                            <SidebarMenuItem title="Tableau de bord">
+                                <SidebarMenuButton className="h-9 rounded-lg text-sm" render={<Link href="/utilisateurDashb" />}>
+                                    <Home />
+                                    <span>Tableau de bord</span>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+            ) : (
+                <>
             <SidebarGroup className="py-1">
-                <SidebarGroupLabel className="px-3 text-[11px] font-semibold uppercase tracking-wider text-sidebar-foreground/50">Tableau de bord</SidebarGroupLabel>
+                <SidebarGroupLabel className="px-3 text-[11px] font-semibold uppercase tracking-wider text-sidebar-foreground/50">Gestion Assemblées</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu className="gap-1 px-1">
                     {items.map((item) => (
@@ -101,27 +123,40 @@ const Appsidebar = () =>{
                 </SidebarGroupContent>
             </SidebarGroup>
             <SidebarGroup className="py-1">
-                <SidebarGroupLabel className="px-3 text-[11px] font-semibold uppercase tracking-wider text-sidebar-foreground/50">Projets</SidebarGroupLabel>
-                 <SidebarGroupAction className="right-3 top-2.5 rounded-md">
-                    <Plus /> <span className="sr-only">Add Project</span>
-                 </SidebarGroupAction>
-                 <SidebarGroupContent>
+                <SidebarGroupLabel className="px-3 text-[11px] font-semibold uppercase tracking-wider text-sidebar-foreground/50">Gestion Membres</SidebarGroupLabel>
+                <SidebarGroupContent>
                     <SidebarMenu className="gap-1 px-1">
-                        <SidebarMenuItem>
-                            <SidebarMenuButton className="h-9 rounded-lg text-sm" render={<Link href="/#" />}>
-                            <Projector />
-                            <span>Voir tous les projets</span>
+                    {items2.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton className="h-9 rounded-lg text-sm" render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-                        <SidebarMenuItem>
-                            <SidebarMenuButton className="h-9 rounded-lg text-sm" render={<Link href="/#" />}>
-                            <Plus />
-                            <span>Ajouter projet</span>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
+
+                    ))}
                     </SidebarMenu>
-                 </SidebarGroupContent>
+                </SidebarGroupContent>
             </SidebarGroup>
+            <SidebarGroup className="py-1">
+                <SidebarGroupLabel className="px-3 text-[11px] font-semibold uppercase tracking-wider text-sidebar-foreground/50">Gestion Finances</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu className="gap-1 px-1">
+                    {items3.map((item) => (
+                        <SidebarMenuItem key={item.title} title={item.title}>
+                            <SidebarMenuButton className="h-9 rounded-lg text-sm" render={<Link href={item.href} />}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+
+                    ))}
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+           
             <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroup className="py-1">
                  <SidebarGroupLabel className="px-3 text-[11px] font-semibold uppercase tracking-wider text-sidebar-foreground/50" render={<CollapsibleTrigger />}>
@@ -149,6 +184,8 @@ const Appsidebar = () =>{
                  </CollapsibleContent>
             </SidebarGroup>
             </Collapsible>
+                </>
+            )}
         </SidebarContent>
                    
 
